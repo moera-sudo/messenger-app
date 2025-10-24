@@ -32,7 +32,7 @@ class ChatScreen extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     }
                     if (state is ChatLoadSuccess) {
-                      // Используем ListView.builder для эффективности
+                      
                       return ListView.builder(
                         reverse: true, // Чаты обычно идут снизу вверх
                         itemCount: state.messages.length,

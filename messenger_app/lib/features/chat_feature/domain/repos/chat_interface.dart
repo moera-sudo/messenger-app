@@ -1,4 +1,3 @@
-// lib/features/chat_feature/domain/repos/chat_repository.dart
 import '../../../../entities/chat/chat_model.dart';
 
 abstract interface class ChatInterface {

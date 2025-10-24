@@ -21,7 +21,6 @@ class ChatRepository implements ChatInterface {
       final messagesJson = box.get(chatId);
 
       if (messagesJson == null || messagesJson.isEmpty) {
-        print("--- [REPO] No messages found in Hive. Returning empty list. ---");
         return []; 
       }
 
@@ -37,7 +36,6 @@ class ChatRepository implements ChatInterface {
     @override
     Future<void> sendMessage(String chatId, String text) async {
       final box = await _getChatHistoryBox();
-      print("--- [REPO_WRITE] Saving message to chatId: '$chatId' ---");
 
       
       final newMessage = MessageEntity(
