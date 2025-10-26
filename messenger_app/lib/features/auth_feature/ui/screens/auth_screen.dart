@@ -7,6 +7,8 @@ import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_form/auth_form.dart';
 
+import '../../../../app/config/liquid_glass_config/liquid_glass_config.dart';
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -15,7 +17,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  // Переменная для переключения между режимами "Вход" и "Регистрация"
   bool _isLoginMode = true;
 
   void _toggleMode() {
@@ -44,9 +45,22 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               );
           }
+
+          if (state is AuthRegisterSuccess) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Text('Registration successful! Please log in.'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            // Автоматически переключаем форму обратно в режим входа
+            _toggleMode(); 
+          }
+
         },
         child: Container(
-          // Фоновый градиент или изображение для лучшего эффекта стекла
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor
           ),
@@ -58,21 +72,9 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(32),
                   child: LiquidGlass(
-                    // Настройки, похожие на ваш BottomNavigation
                     shape: LiquidRoundedSuperellipse(
                         borderRadius: const Radius.circular(32)),
-                        
-                        settings: LiquidGlassSettings(
-                          thickness: 12.0,
-                          // glassColor: Color.fromARGB(51, 0, 0, 0),
-                          lightIntensity: 0,
-                          refractiveIndex: 1.1,
-                          ambientStrength: 1,
-                          blur: 2.5,
-                          blend: 50,
-                          saturation: 1,
-                        ),
-                    // Основной контент формы
+                        settings: LiquidGlassBaseConfig(),
                     child: Container(
                       padding: const EdgeInsets.all(24.0),
                       decoration: BoxDecoration(

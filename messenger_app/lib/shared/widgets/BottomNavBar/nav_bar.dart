@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import '../../theme_view.dart';
 
+import '../../../app/config/liquid_glass_config/liquid_glass_config.dart';
+
 part 'nav_bar_item.dart';
 
 
@@ -31,16 +33,7 @@ class BottomNavigation extends StatelessWidget{
           borderRadius: BorderRadius.circular(64),
           child: LiquidGlass(
             shape: LiquidRoundedSuperellipse(borderRadius: Radius.circular(64)),
-            settings: LiquidGlassSettings(
-              thickness: 12.0,
-              // glassColor: Color.fromARGB(51, 0, 0, 0),
-              lightIntensity: 0,
-              refractiveIndex: 1.1,
-              ambientStrength: 1,
-              blur: 2.5,
-              blend: 50,
-              saturation: 1,
-            ),
+            settings: LiquidGlassBaseConfig(),
             child: Container(
               width: MediaQuery.of(context).size.width - 32,
               height: 72,

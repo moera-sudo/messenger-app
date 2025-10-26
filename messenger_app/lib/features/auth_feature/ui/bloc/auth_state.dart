@@ -33,3 +33,6 @@ class AuthFailure extends AuthState {
   @override
   List<Object?> get props => [message];
 }
+
+/// UI может показать SnackBar "Success!" и, например, переключить форму обратно в режим логина.
+class AuthRegisterSuccess extends AuthState {}
